@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace UDPServer.Persistence.Models
 {
-    public class Sender
+    public class Sender : Entity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
         public string IpAddress { get; set; }
     }
 }

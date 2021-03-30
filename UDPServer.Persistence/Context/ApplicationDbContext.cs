@@ -24,6 +24,7 @@ namespace UDPServer.Persistence.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<ApplicationDbContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
         }
