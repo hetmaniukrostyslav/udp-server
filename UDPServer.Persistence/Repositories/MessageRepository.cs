@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -21,9 +22,21 @@ namespace UDPServer.Persistence.Repositories
         public override async Task<List<Message>> FindManyAsync(Expression<Func<Message, bool>> expression,
                                                                             CancellationToken cancellationToken)
         {
-            return await DbSet.Where(expression)
+            try
+            {
+                return await DbSet.Where(expression)
                                 .Include(x=>x.Sender)
                                 .ToListAsync(cancellationToken);
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
         }
     }
 }
