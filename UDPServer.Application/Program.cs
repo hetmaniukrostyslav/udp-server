@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Http.SelfHost;
+using UDPServer.Application.Infrastructure;
 
 namespace UDPServer.Application
 {
@@ -10,6 +8,11 @@ namespace UDPServer.Application
     {
         static void Main(string[] args)
         {
+            using (var server = new HttpSelfHostServer(ApiConfig.Configure()))
+            {
+                server.OpenAsync().Wait();
+                Console.ReadKey();
+            }
         }
     }
 }
