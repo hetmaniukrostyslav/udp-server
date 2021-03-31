@@ -9,6 +9,9 @@ namespace UDPServer.Persistence.Models
 {
     public class Sender : Entity
     {
+        [Index(IsUnique = true)]
         public string IpAddress { get; set; }
+
+        public ICollection<Message> Messages { get; set; }
     }
 }

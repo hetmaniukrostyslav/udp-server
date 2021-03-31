@@ -12,7 +12,7 @@ using UDPServer.Persistence.Models;
 
 namespace UDPServer.Persistence.Repositories
 {
-    public class Repository<TEntity> where TEntity : Entity 
+    public abstract class Repository<TEntity> where TEntity : Entity 
     {
         protected readonly ApplicationDbContext Context;
         protected readonly DbSet<TEntity> DbSet;
@@ -30,6 +30,20 @@ namespace UDPServer.Persistence.Repositories
                 DbSet.Add(entity);
                 await Context.SaveChangesAsync(cancellationToken);
                 return entity;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public virtual async Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> expression,
+                                                               CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DbSet.FirstOrDefaultAsync(expression, cancellationToken);
             }
             catch (Exception e)
             {

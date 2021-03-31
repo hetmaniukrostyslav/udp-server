@@ -6,7 +6,6 @@ namespace UDPServer.Persistence.Models
     public abstract class Entity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
     }
 }
