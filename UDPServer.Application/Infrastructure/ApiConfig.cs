@@ -1,7 +1,13 @@
-﻿using System.Configuration;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using System.Configuration;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using UDPServer.Persistence.Context;
+using UDPServer.Persistence.Repositories;
 
 namespace UDPServer.Application.Infrastructure
 {
@@ -25,6 +31,7 @@ namespace UDPServer.Application.Infrastructure
                             .JsonFormatter
                             .SupportedMediaTypes
                             .Add(new MediaTypeHeaderValue(MediaType));
+
             return configuration;
         }
     }
