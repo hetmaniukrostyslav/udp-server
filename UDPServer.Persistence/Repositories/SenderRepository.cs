@@ -16,24 +16,5 @@ namespace UDPServer.Persistence.Repositories
         {
 
         }
-
-        //public async Task<Sender> InsertIfNotExistOneAsync(Sender entity, CancellationToken cancellationToken)
-        //{
-        //    try
-        //    {
-        //        var result = await DbSet.FirstOrDefaultAsync(x => x.IpAddress == entity.IpAddress, cancellationToken);
-        //        if (result == null)
-        //        {
-        //            result = await InsertOneAsync(entity, cancellationToken);
-        //        }
-        //        entity = result;
-        //        return entity;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //        throw;
-        //    }
-        //}
     }
 }
