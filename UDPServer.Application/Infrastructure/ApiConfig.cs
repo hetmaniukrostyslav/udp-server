@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Swashbuckle.Application;
 using System.Configuration;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -31,6 +32,10 @@ namespace UDPServer.Application.Infrastructure
                             .JsonFormatter
                             .SupportedMediaTypes
                             .Add(new MediaTypeHeaderValue(MediaType));
+
+            configuration
+                .EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API"))
+                .EnableSwaggerUi();
 
             return configuration;
         }

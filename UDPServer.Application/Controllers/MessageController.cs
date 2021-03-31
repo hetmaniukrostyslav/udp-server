@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using UDPServer.Application.Helper;
+using UDPServer.Application.Mapper;
 using UDPServer.Persistence.Context;
 using UDPServer.Persistence.Models;
 using UDPServer.Persistence.Repositories;
@@ -28,12 +29,12 @@ namespace UDPServer.Application.Controllers
             var startDateValue = DateTimeHelper.FromUnixTime(startDate.HasValue ? startDate.Value : 0);
             var endDateValue = DateTimeHelper.FromUnixTime(endDate.HasValue ? endDate.Value : 0);
 
-            var result = await _messageRepository.FindManyAsync(x => (isAddressEmpty || x.Text.ToLower() == address.ToLower()) &&
+            var result = await _messageRepository.FindManyAsync(x => (isAddressEmpty || x.Sender.IpAddress == address) &&
                                                                        (!startDate.HasValue || x.CreatedAt >= startDateValue) &&
                                                                        (!endDate.HasValue || x.CreatedAt <= endDateValue),
                                                                        cancellationToken);
 
-            return Ok(result);
+            return Ok(result.Select(MessageMapper.ToViewModel));
         }
     }
 }
