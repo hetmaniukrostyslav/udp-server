@@ -13,7 +13,7 @@ namespace UDPServer.Application.Infrastructure
 {
     public static class ApiConfig
     {
-        private const string AddressPath = "Address";
+        private const string AddressPath = "HostAddress";
         private const string RouteMapName = "API Default";
         private const string RouteTemplete = "api/{controller}/{id}";
         private const string MediaType = "text/html";

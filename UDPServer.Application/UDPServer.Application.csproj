@@ -117,9 +117,10 @@
   <ItemGroup>
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Helper\DateTimeHelper.cs" />
+    <Compile Include="Helper\QueueProcessor.cs" />
     <Compile Include="Infrastructure\ApiConfig.cs" />
     <Compile Include="Infrastructure\IoCConfig.cs" />
-    <Compile Include="Managers\UdpSessionManager.cs" />
+    <Compile Include="Managers\MessageListener.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
