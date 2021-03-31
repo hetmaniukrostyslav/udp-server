@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
@@ -30,31 +31,23 @@ namespace UDPServer.Persistence.Repositories
                 await Context.SaveChangesAsync(cancellationToken);
                 return entity;
             }
-            catch(SqlException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                throw;
-            }
-            catch
-            {
                 throw;
             }
         }
 
         public virtual async Task<List<TEntity>> FindManyAsync(Expression<Func<TEntity, bool>> expression, 
-                                                                            CancellationToken cancellationToken)
+                                                                CancellationToken cancellationToken)
         {
             try
             {
                 return await DbSet.Where(expression).ToListAsync(cancellationToken);
             }
-            catch (SqlException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                throw;
-            }
-            catch
-            {
                 throw;
             }
         }
